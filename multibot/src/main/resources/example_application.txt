@@ -1,0 +1,14 @@
+vandalDelay=
+vandalHour=
+vandalURL=
+defaultChannelID=
+resetDelay=
+token=
+prefix=
+countDownRotate=
+date=
+helpCommand=
+helpText=
+ocrCommand=
+dataPathTess=
+tessLang=
