@@ -9,9 +9,16 @@ import bot.routines.Routines;
 
 @SpringBootApplication
 public class MultibotApplication {
+	/**
+	 * All the routines the bot perform
+	 */
+	@SuppressWarnings("unused")
 	@Autowired
 	private Routines routines;
-	
+	/**
+	 * All the commands the bot recieves
+	 */
+	@SuppressWarnings("unused")
 	@Autowired
 	private Listeners listeners;
 	

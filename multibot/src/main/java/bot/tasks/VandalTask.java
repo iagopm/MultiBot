@@ -11,17 +11,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import bot.discord.DiscordHandler;
+import bot.controller.DiscordController;
 
 @Component
 public class VandalTask implements DiscordTask{
 	
 	@Autowired
-	DiscordHandler handler;
+	DiscordController handler;
 	
 	@Value("${vandalURL}")
 	private String vandalURL;

@@ -8,13 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import bot.discord.DiscordHandler;
+import bot.controller.DiscordController;
 
 @Component
 public class CountdownTask implements DiscordTask {
 
 	@Autowired
-	DiscordHandler handler;
+	DiscordController handler;
 
 	@Value("${date}")
 	private String date;

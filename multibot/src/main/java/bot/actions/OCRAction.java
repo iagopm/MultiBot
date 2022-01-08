@@ -1,4 +1,4 @@
-package bot.util;
+package bot.actions;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -14,7 +14,7 @@ import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.TesseractException;
 
 @Component
-public class OCRHelper {
+public class OCRAction {
 	@Value("${dataPathTess}")
 	private String dataPathTess;
 	

@@ -1,11 +1,13 @@
-package bot.discord;
+package bot.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import bot.util.DiscordApiHelper;
+
 @Component
-public class DiscordHandler {
+public class DiscordController {
 
 	@Value("${defaultChannelID}")
 	private String defaultChannelID;

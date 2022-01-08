@@ -5,8 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import bot.discord.DiscordApiHelper;
-import bot.util.OCRHelper;
+import bot.actions.OCRAction;
+import bot.util.DiscordApiHelper;
 
 @Component
 public class Listeners implements InitializingBean {
@@ -14,13 +14,19 @@ public class Listeners implements InitializingBean {
 	private DiscordApiHelper helper;
 
 	@Autowired
-	private OCRHelper ocrHelper;
+	private OCRAction ocrHelper;
 	
 	@Value("${helpCommand}")
 	private String helpCommand;
 
 	@Value("${ocrCommand}")
 	private String ocrCommand;
+
+	@Value("${shutDownCommand}")
+	private String shutDownCommand;
+	
+	@Value("${adminID}")
+	private Long adminID;
 	
 	@Value("${prefix}")
 	private String prefix;
@@ -48,5 +54,16 @@ public class Listeners implements InitializingBean {
 				event.getChannel().sendMessage(text);
 			}
 		});
+		/**
+		 * Shutdown bot
+		 */
+		helper.api.addMessageCreateListener(event -> {
+			if (event.getMessageContent().startsWith(prefix + shutDownCommand)) {
+				if(adminID.equals(event.getMessageAuthor().getId())) {
+					System.exit(0);
+				}
+			}
+		});
+		
 	}
 }

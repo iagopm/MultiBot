@@ -1,4 +1,4 @@
-package bot.discord;
+package bot.util;
 
 import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
