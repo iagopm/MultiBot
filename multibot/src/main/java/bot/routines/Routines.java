@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import bot.tasks.CountdownTask;
 import bot.tasks.VandalTask;
+import bot.tasks.WishListTask;
 import bot.util.Utils;
 
 @Component
@@ -27,11 +28,17 @@ public class Routines implements InitializingBean {
 	@Value("${countDownRotate}")
 	private Integer countDownRotate;
 
+	@Value("${wishlistDelay}")
+	private Integer wishlistDelay;
+
 	@Autowired
 	private VandalTask vandalTask;
 
 	@Autowired
 	private CountdownTask countdownTask;
+
+	@Autowired
+	private WishListTask wishListTask;
 
 	@Autowired
 	private Utils utils;
@@ -42,6 +49,15 @@ public class Routines implements InitializingBean {
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
+		/**
+		 * Check all amazon prices
+		 */
+		timer.schedule(new TimerTask() {
+			@Override
+			public void run() {
+				wishListTask.perform();
+			}
+		}, 1000, utils.toMinutes(wishlistDelay));
 		/**
 		 * Countdown to anything
 		 */

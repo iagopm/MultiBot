@@ -1,14 +1,36 @@
+#Vandal
 vandalDelay=
 vandalHour=
 vandalURL=
-defaultChannelID=
-resetDelay=
+
+#General bot settings
 token=
+defaultChannelID=
+adminID=
+resetDelay=
+
+#Commands
 prefix=
+helpCommand=
+ocrCommand=
+shutDownCommand=
+
+#Countdown
 countDownRotate=
 date=
-helpCommand=
+
+#Help command
 helpText=
-ocrCommand=
+
+#Ocr command
 dataPathTess=
 tessLang=
+
+#Amazon Bot
+wishlist=
+wishlistDelay=
+priceChangedMessage=
+listChangedMessage=
+botDetectedMessage=
+#SPRING
+spring.main.banner-mode=

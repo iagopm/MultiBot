@@ -19,11 +19,23 @@
 		<java.version>11</java.version>
 		<discord-version>3.3.2</discord-version>
 		<tesseract-version>5.0.0</tesseract-version>
+		<okhttp-version>4.9.3</okhttp-version>
+		<jsoup-version>1.14.3</jsoup-version>
 	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+			<version>${jsoup-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.squareup.okhttp3</groupId>
+			<artifactId>okhttp</artifactId>
+			<version>${okhttp-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.javacord</groupId>

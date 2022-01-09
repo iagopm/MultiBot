@@ -20,7 +20,7 @@ import bot.controller.DiscordController;
 public class VandalTask implements DiscordTask{
 	
 	@Autowired
-	DiscordController handler;
+	private DiscordController handler;
 	
 	@Value("${vandalURL}")
 	private String vandalURL;
