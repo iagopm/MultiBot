@@ -19,7 +19,6 @@
 		<java.version>11</java.version>
 		<discord-version>3.3.2</discord-version>
 		<tesseract-version>5.0.0</tesseract-version>
-		<okhttp-version>4.9.3</okhttp-version>
 		<jsoup-version>1.14.3</jsoup-version>
 	</properties>
 	<dependencies>
@@ -35,7 +34,6 @@
 		<dependency>
 			<groupId>com.squareup.okhttp3</groupId>
 			<artifactId>okhttp</artifactId>
-			<version>${okhttp-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.javacord</groupId>

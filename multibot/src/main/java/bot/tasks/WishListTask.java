@@ -2,6 +2,7 @@ package bot.tasks;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.jsoup.Jsoup;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import bot.actions.PersistProductsAction;
 import bot.controller.DiscordController;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -34,6 +36,9 @@ public class WishListTask implements DiscordTask {
 	@Autowired
 	private DiscordController handler;
 
+	@Autowired
+	private PersistProductsAction persistor;
+
 	private List<String> products = new ArrayList<>();
 
 	private boolean firstTime = true;
@@ -52,34 +57,33 @@ public class WishListTask implements DiscordTask {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		if (firstTime) {
-			this.products = loadAllProducts(text);
+		if (firstTime && persistor.fileExists()) {
+			setProducts(persistor.retrievePersisted());
+			List<String> newProducts = loadAllProducts(text);
+			compareProducts(newProducts);
 			firstTime = false;
 		} else {
 			List<String> newProducts = loadAllProducts(text);
 			compareProducts(newProducts);
+			firstTime = false;
 		}
-		String productsText = "";
-		for (String product : this.products) {
-			productsText += "[" + product + "]";
-		}
-		System.out.println(productsText);
+		printProducts();
 	}
 
 	private void compareProducts(List<String> newProducts) {
 		if (newProducts.isEmpty()) {
-			handler.simpleMessage(botDetectedMessage);
+			handler.simpleMessageAndNotifyOwner(botDetectedMessage);
 			return;
 		}
 		if (newProducts.size() != products.size()) {
-			handler.simpleMessage(listChangedMessage);
-			this.products = newProducts;
+			handler.simpleMessageAndNotifyOwner(listChangedMessage);
+			setProducts(newProducts);
 			return;
 		}
 		for (int i = 0; i < newProducts.size(); i++) {
 			if (!newProducts.get(i).equals(this.products.get(i))) {
-				handler.simpleMessage(priceChangedMessage + this.products.get(i) + " -> " + newProducts.get(i));
-				this.products = newProducts;
+				handler.simpleMessageAndNotifyOwner(priceChangedMessage + this.products.get(i) + " -> " + newProducts.get(i));
+				setProducts(newProducts);
 			}
 		}
 	}
@@ -91,5 +95,18 @@ public class WishListTask implements DiscordTask {
 		Elements elements = doc.select("span.a-offscreen");
 		elements.forEach(e -> newProducts.add(e.text().replace(" ", "")));
 		return newProducts;
+	}
+
+	private void setProducts(List<String> products) {
+		persistor.persist(products);
+		this.products = products;
+	}
+	
+	private void printProducts() {
+		String productsText = new Date().toString()+" ";
+		for (String product : this.products) {
+			productsText += "[" + product + "]";
+		}
+		System.out.println(productsText);		
 	}
 }

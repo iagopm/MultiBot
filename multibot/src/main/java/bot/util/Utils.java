@@ -1,6 +1,6 @@
 package bot.util;
 
-import java.util.Calendar;
+import java.time.LocalDateTime;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -10,10 +10,10 @@ public class Utils {
 	}
 
 	public boolean isHour(int hour) {
-		return (Calendar.HOUR_OF_DAY == hour);
+		return (LocalDateTime.now().getHour() == hour);
 	}
 
 	public boolean isMinute(int minute) {
-		return (Calendar.MINUTE == minute);
+		return (LocalDateTime.now().getMinute() == minute);
 	}
 }
