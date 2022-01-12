@@ -8,7 +8,6 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 import bot.actions.PersistProductsAction;
@@ -43,7 +42,6 @@ public class WishListTask implements DiscordTask {
 
 	private boolean firstTime = true;
 
-	@Async
 	@Override
 	public void perform() {
 		OkHttpClient client = new OkHttpClient().newBuilder().build();

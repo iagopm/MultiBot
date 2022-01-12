@@ -63,6 +63,5 @@ public class Listeners implements InitializingBean {
 				System.exit(0);
 			}
 		});
-
 	}
 }

@@ -35,6 +35,7 @@ botDetectedMessage=
 #SPRING
 spring.main.banner-mode=
 logging.level.root=
+spring.task.scheduling.pool.size=
 
 #Others
 defaultErrorMessage=Error

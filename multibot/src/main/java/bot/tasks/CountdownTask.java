@@ -6,7 +6,6 @@ import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 import bot.controller.DiscordController;
@@ -22,7 +21,6 @@ public class CountdownTask implements DiscordTask {
 
 	public static final int SECONDS_IN_A_DAY = 24 * 60 * 60;
 
-	@Async
 	@Override
 	public void perform() {
 		Date target = new Date();
