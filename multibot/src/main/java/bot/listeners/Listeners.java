@@ -15,7 +15,7 @@ public class Listeners implements InitializingBean {
 
 	@Autowired
 	private OCRAction ocrHelper;
-	
+
 	@Value("${helpCommand}")
 	private String helpCommand;
 
@@ -24,10 +24,10 @@ public class Listeners implements InitializingBean {
 
 	@Value("${shutDownCommand}")
 	private String shutDownCommand;
-	
+
 	@Value("${adminID}")
 	private Long adminID;
-	
+
 	@Value("${prefix}")
 	private String prefix;
 
@@ -39,7 +39,7 @@ public class Listeners implements InitializingBean {
 		/**
 		 * Help command
 		 */
-		helper.api.addMessageCreateListener(event -> {
+		helper.getApi().addMessageCreateListener(event -> {
 			if (event.getMessageContent().equalsIgnoreCase(prefix + helpCommand)) {
 				event.getChannel().sendMessage(helpText);
 			}
@@ -47,9 +47,9 @@ public class Listeners implements InitializingBean {
 		/**
 		 * Extract text from image
 		 */
-		helper.api.addMessageCreateListener(event -> {
+		helper.getApi().addMessageCreateListener(event -> {
 			if (event.getMessageContent().startsWith(prefix + ocrCommand)) {
-				String url =event.getMessageContent().replace(prefix + ocrCommand+" ", "");
+				String url = event.getMessageContent().replace(prefix + ocrCommand + " ", "");
 				String text = ocrHelper.getTextFromImage(url);
 				event.getChannel().sendMessage(text);
 			}
@@ -57,13 +57,12 @@ public class Listeners implements InitializingBean {
 		/**
 		 * Shutdown bot
 		 */
-		helper.api.addMessageCreateListener(event -> {
-			if (event.getMessageContent().startsWith(prefix + shutDownCommand)) {
-				if(adminID.equals(event.getMessageAuthor().getId())) {
-					System.exit(0);
-				}
+		helper.getApi().addMessageCreateListener(event -> {
+			if (event.getMessageContent().startsWith(prefix + shutDownCommand)
+					&& adminID.equals(event.getMessageAuthor().getId())) {
+				System.exit(0);
 			}
 		});
-		
+
 	}
 }

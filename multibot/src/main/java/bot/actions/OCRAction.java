@@ -17,24 +17,27 @@ import net.sourceforge.tess4j.TesseractException;
 public class OCRAction {
 	@Value("${dataPathTess}")
 	private String dataPathTess;
-	
+
 	@Value("${tessLang}")
 	private String tessLang;
-	
+
+	@Value("${defaultErrorMessage}")
+	private String defaultErrorMessage;
+
 	public String getTextFromImage(String url) {
 		URL link = null;
 		try {
 			link = new URL(url);
 		} catch (MalformedURLException e2) {
 			e2.printStackTrace();
-			return "Error";
+			return defaultErrorMessage;
 		}
 		BufferedImage image = null;
 		try {
 			image = ImageIO.read(link);
 		} catch (IOException e1) {
 			e1.printStackTrace();
-			return "Error";
+			return defaultErrorMessage;
 		}
 		Tesseract tesseract = new Tesseract();
 		tesseract.setDatapath(dataPathTess);
@@ -45,8 +48,7 @@ public class OCRAction {
 			return tesseract.doOCR(image);
 		} catch (TesseractException e) {
 			e.printStackTrace();
-			return "Error";
+			return defaultErrorMessage;
 		}
 	}
-
 }

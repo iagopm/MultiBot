@@ -22,6 +22,6 @@ public class Utils {
 
 	public static void log(Object message) {
 		SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
-		System.out.println(formatter.format(new Date()) + "  -  " + message.toString());
+		System.out.println(formatter.format(new Date()) + " - " + message.toString());
 	}
 }

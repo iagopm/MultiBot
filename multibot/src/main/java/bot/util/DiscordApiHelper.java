@@ -11,10 +11,14 @@ public class DiscordApiHelper implements InitializingBean{
 	@Value("${token}")
 	private String token;
 	
-	public DiscordApi api;
+	private DiscordApi api;
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
 		api = new DiscordApiBuilder().setToken(token).login().join();
+	}
+
+	public DiscordApi getApi() {
+		return api;
 	}
 }

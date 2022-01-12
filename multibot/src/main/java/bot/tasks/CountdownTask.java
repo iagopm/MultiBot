@@ -20,7 +20,7 @@ public class CountdownTask implements DiscordTask {
 	@Value("${date}")
 	private String date;
 
-	public static int SECONDS_IN_A_DAY = 24 * 60 * 60;
+	public static final int SECONDS_IN_A_DAY = 24 * 60 * 60;
 
 	@Async
 	@Override
@@ -46,6 +46,5 @@ public class CountdownTask implements DiscordTask {
 
 		handler.simpleMessage(
 				"[ELDEN RING] " + days + " días " + hours + " horas " + minutes + " minutos " + seconds + " segundos");
-		System.out.println();
 	}
 }

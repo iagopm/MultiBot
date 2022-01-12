@@ -13,23 +13,24 @@ public class DiscordController {
 
 	@Value("${defaultChannelID}")
 	private String defaultChannelID;
-	
+
 	@Value("${adminID}")
 	private String adminID;
-	
+
 	@Autowired
 	private DiscordApiHelper helper;
 
 	public void simpleMessage(String message) {
-		helper.api.getTextChannelById(defaultChannelID).get().sendMessage(message);
+		helper.getApi().getTextChannelById(defaultChannelID).ifPresent(th -> th.sendMessage(message));
 	}
-	
+
 	public void simpleMessageAndNotifyOwner(String message) {
 		try {
-			helper.api.getUserById(adminID).get().openPrivateChannel().get().sendMessage(message);
+			helper.getApi().getUserById(adminID).get().openPrivateChannel().get().sendMessage(message);
 		} catch (InterruptedException | ExecutionException e) {
 			e.printStackTrace();
+			Thread.currentThread().interrupt();
 		}
-		helper.api.getTextChannelById(defaultChannelID).get().sendMessage(message);
+		helper.getApi().getTextChannelById(defaultChannelID).ifPresent(th -> th.sendMessage(message));
 	}
 }
