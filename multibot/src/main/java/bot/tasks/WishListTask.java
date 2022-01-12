@@ -2,25 +2,25 @@ package bot.tasks;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 import bot.actions.PersistProductsAction;
 import bot.controller.DiscordController;
+import bot.util.Utils;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
 @Component
 public class WishListTask implements DiscordTask {
-
+	
 	@Value("${wishlist}")
 	private String wishlist;
 
@@ -43,6 +43,7 @@ public class WishListTask implements DiscordTask {
 
 	private boolean firstTime = true;
 
+	@Async
 	@Override
 	public void perform() {
 		OkHttpClient client = new OkHttpClient().newBuilder().build();
@@ -80,12 +81,10 @@ public class WishListTask implements DiscordTask {
 			setProducts(newProducts);
 			return;
 		}
-		for (int i = 0; i < newProducts.size(); i++) {
-			if (!newProducts.get(i).equals(this.products.get(i))) {
-				handler.simpleMessageAndNotifyOwner(priceChangedMessage + this.products.get(i) + " -> " + newProducts.get(i));
-				setProducts(newProducts);
-			}
-		}
+		newProducts.stream()
+		.filter(p -> !p.equals(this.products.get(newProducts.indexOf(p))))
+		.forEach(p -> 
+		{handler.simpleMessageAndNotifyOwner(priceChangedMessage + this.products.get(newProducts.indexOf(p)) + " -> " + p);setProducts(newProducts);});
 	}
 
 	private List<String> loadAllProducts(String text) {
@@ -101,12 +100,10 @@ public class WishListTask implements DiscordTask {
 		persistor.persist(products);
 		this.products = products;
 	}
-	
+
 	private void printProducts() {
-		String productsText = new Date().toString()+" ";
-		for (String product : this.products) {
-			productsText += "[" + product + "]";
-		}
-		System.out.println(productsText);		
+		StringBuilder productsText = new StringBuilder("");
+		this.products.forEach(p -> productsText.append("[" + p + "]"));
+		Utils.log(productsText.toString());
 	}
 }

@@ -16,12 +16,10 @@ public class PersistProductsAction {
 	private String persistFile;
 
 	public void persist(List<String> products) {
-		String text = "";
-		for (String p : products) {
-			text += p + "\n";
-		}
+		StringBuilder text = new StringBuilder("");
+		products.forEach(p->text.append(p + "\n"));
 		try {
-			FileUtils.writeStringToFile(new File(persistFile), text, StandardCharsets.UTF_8);
+			FileUtils.writeStringToFile(new File(persistFile), text.toString(), StandardCharsets.UTF_8);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
