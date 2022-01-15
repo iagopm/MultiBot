@@ -1,10 +1,10 @@
 #Vandal
 #minutes
-vandalDelay=
+vandalDelay=5
 #hour to check vandal 24 hour format
-vandalHour=
+vandalHour=10
 #rss url
-vandalURL=
+vandalURL=https://...
 
 #General bot settings
 #discord bot token
@@ -12,31 +12,32 @@ token=
 defaultChannelID=
 adminID=
 #minutes
-resetDelay=
+resetDelay=1
 
 #Commands
-prefix=
-helpCommand=
-ocrCommand=
-shutDownCommand=
+prefix=!
+helpCommand=help
+ocrCommand=ocr
+shutDownCommand=exit
 
 #Countdown
 #minutes
-countDownRotate=
+countDownRotate=1200
+#java default java.util.Date class format
 date=
 
 #Help command
 helpText=
 
-#Ocr command
+#Ocr command tesseract lib route and so
 dataPathTess=
 tessLang=
 
 #Amazon Bot
 #wishlist url must be public
 wishlist=
-#minutes
-wishlistDelay=
+#minutes 5-15 min so bot doesn't get detected
+wishlistDelay=15
 priceChangedMessage=
 listChangedMessage=
 botDetectedMessage=
