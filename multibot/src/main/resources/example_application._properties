@@ -1,12 +1,17 @@
 #Vandal
+#minutes
 vandalDelay=
+#hour to check vandal 24 hour format
 vandalHour=
+#rss url
 vandalURL=
 
 #General bot settings
+#discord bot token
 token=
 defaultChannelID=
 adminID=
+#minutes
 resetDelay=
 
 #Commands
@@ -16,6 +21,7 @@ ocrCommand=
 shutDownCommand=
 
 #Countdown
+#minutes
 countDownRotate=
 date=
 
@@ -27,15 +33,17 @@ dataPathTess=
 tessLang=
 
 #Amazon Bot
+#wishlist url must be public
 wishlist=
+#minutes
 wishlistDelay=
 priceChangedMessage=
 listChangedMessage=
 botDetectedMessage=
 #SPRING
-spring.main.banner-mode=
-logging.level.root=
-spring.task.scheduling.pool.size=
+spring.main.banner-mode=false
+logging.level.root=ERROR
+spring.task.scheduling.pool.size=10
 
 #Others
 defaultErrorMessage=Error
