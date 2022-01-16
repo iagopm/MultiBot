@@ -2,30 +2,31 @@
 
 Functionalities ->
 
-Commands:
+    Commands:
 
-    Ocr image recognition via ocr command.
+        Ocr image recognition via ocr command.
 
-    Usage: !ocr https://webpage.com/image.whateverextension
+        Usage: !ocr https://webpage.com/image.whateverextension
 
-    Shutdown command (can only be performed by the discord server admin): !exit 
+        Shutdown command (can only be performed by the discord server admin): !exit 
 
-    Help command: Displays all the commands available for the user.
+        Help command: Displays all the commands available for the user.
 
-Scheduled tasks:
+    Scheduled tasks:
 
-    Rss feed read.
-    
-    Amazon wishlist price tracker.
-    
-    Countdown to any date.
+        Rss feed read.
+
+        Amazon wishlist price tracker.
+
+        Countdown to any date.
 
 Requirements ->
 
-JAVA 11 + 
-Maven building the project
+        JAVA 11 + 
 
-How to install:
+        Maven building the project
+
+How to install ->
 
         1.- Import project into your favourite IDE
 
@@ -44,11 +45,11 @@ How to install:
 
 Technologies Used ->
 
-SpringBoot
+        SpringBoot
 
-Tesseract4j
+        Tesseract4j
 
-JavaCord
+        JavaCord
 
-jsoup
+        jsoup
 
