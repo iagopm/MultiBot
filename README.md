@@ -1,5 +1,7 @@
 # MultiBot
 
+Multi purpose discord bot.
+
 Functionalities ->
 
     Commands:
