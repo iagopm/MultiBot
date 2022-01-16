@@ -61,7 +61,7 @@ public class Routines {
 	/**
 	 * Reset tasks checks
 	 */
-	@Scheduled(fixedRateString = "${resetDelay}", timeUnit = TimeUnit.MINUTES)
+	@Scheduled(cron = "${resetDelay}", zone = "${zone}")
 	public void resetTask() {
 		if (utils.isHour(0) && utils.isMinute(00)) {
 			vandalPublished = false;

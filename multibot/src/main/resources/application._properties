@@ -13,8 +13,10 @@ token=
 defaultChannelID=
 # Admin id for shutdown command usage format id1,id2,id3
 adminID=
-# This resets flags of daily checks minutes
-resetDelay=1
+# This resets flags of daily checks cron format 0 0 0 * * *
+resetDelay=0 0 0 * * *
+#zone=Europe/London
+zone=
 
 # Commands
 prefix=!

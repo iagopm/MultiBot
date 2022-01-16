@@ -121,7 +121,7 @@ public class WishListTask implements DiscordTask {
 
 	private void printProducts() {
 		StringBuilder productsText = new StringBuilder("");
-		this.products.forEach(p -> productsText.append("[" + p + "]"));
+		this.products.forEach(p -> productsText.append("[ " + p + " ]"));
 		Utils.log(productsText.toString());
 	}
 }
