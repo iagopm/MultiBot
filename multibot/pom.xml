@@ -20,11 +20,17 @@
 		<discord-version>3.3.2</discord-version>
 		<tesseract-version>5.0.0</tesseract-version>
 		<jsoup-version>1.14.3</jsoup-version>
+		<json-version>20211205</json-version>
 	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>${json-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.jsoup</groupId>

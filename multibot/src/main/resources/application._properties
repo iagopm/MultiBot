@@ -11,7 +11,7 @@ vandalURL=https://...
 token=
 # General text channel ID
 defaultChannelID=
-# Admin id for shutdown command usage
+# Admin id for shutdown command usage format id1,id2,id3
 adminID=
 # This resets flags of daily checks minutes
 resetDelay=1
@@ -46,6 +46,8 @@ wishlistDelay=15
 priceChangedMessage=
 listChangedMessage=
 botDetectedMessage=
+urlTemplate=https://www.a...z.com/dp/
+
 #SPRING
 spring.main.banner-mode=false
 logging.level.root=ERROR

@@ -1,5 +1,7 @@
 package bot.listeners;
 
+import java.util.List;
+
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,8 +27,8 @@ public class Listeners implements InitializingBean {
 	@Value("${shutDownCommand}")
 	private String shutDownCommand;
 
-	@Value("${adminID}")
-	private Long adminID;
+	@Value("#{'${adminID}'.split(',')}") 
+	private List<String> adminID;
 
 	@Value("${prefix}")
 	private String prefix;
@@ -59,7 +61,7 @@ public class Listeners implements InitializingBean {
 		 */
 		helper.getApi().addMessageCreateListener(event -> {
 			if (event.getMessageContent().startsWith(prefix + shutDownCommand)
-					&& adminID.equals(event.getMessageAuthor().getId())) {
+					&& adminID.contains(event.getMessageAuthor().getId()+"")) {
 				System.exit(0);
 			}
 		});

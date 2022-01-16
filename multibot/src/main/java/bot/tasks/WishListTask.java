@@ -3,6 +3,8 @@ package bot.tasks;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -31,7 +33,10 @@ public class WishListTask implements DiscordTask {
 
 	@Value("${botDetectedMessage}")
 	private String botDetectedMessage;
-
+	
+	@Value("${urlTemplate}")
+	private String urlTemplate;
+	
 	@Autowired
 	private DiscordController handler;
 
@@ -87,10 +92,25 @@ public class WishListTask implements DiscordTask {
 
 	private List<String> loadAllProducts(String text) {
 		List<String> newProducts = new ArrayList<>();
-		// <span class="a-offscreen">99,00&nbsp;€</span>
+		/*
+		 * <span class="a-offscreen">99,00&nbsp;€</span> <div data-item-prime-info=
+		 * "{&quot;id&quot;:&quot;&quot;,&quot;asin&quot;:&quot;xxx&quot;}"
+		 * class="a-section price-section">
+		 */
 		Document doc = Jsoup.parse(text);
-		Elements elements = doc.select("span.a-offscreen");
-		elements.forEach(e -> newProducts.add(e.text().replace(" ", "")));
+
+		Elements prices = doc.select("span.a-offscreen");
+		List<String> productCodes = new ArrayList<>();
+		/*
+		 * Parse html attr that contains a json and then getting the asin json element
+		 * for building product url
+		 */
+		doc.select("div.a-section div.price-section").forEach(e ->
+		productCodes.add(new JSONObject(e.attr("data-item-prime-info")).getString("asin"))
+		);
+
+		prices.forEach(e -> newProducts
+				.add(e.text().replace(" ", "") + " " + urlTemplate + productCodes.get(prices.indexOf(e))));
 		return newProducts;
 	}
 

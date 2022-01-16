@@ -1,5 +1,6 @@
 package bot.controller;
 
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +15,12 @@ public class DiscordController {
 	@Value("${defaultChannelID}")
 	private String defaultChannelID;
 
-	@Value("${adminID}")
-	private String adminID;
-
+	@Value("#{'${adminID}'.split(',')}") 
+	private List<String> adminID;
+	
+	@Value("${wishlist}")
+	private String wishlist;
+	
 	@Autowired
 	private DiscordApiHelper helper;
 
@@ -25,12 +29,15 @@ public class DiscordController {
 	}
 
 	public void simpleMessageAndNotifyOwner(String message) {
-		try {
-			helper.getApi().getUserById(adminID).get().openPrivateChannel().get().sendMessage(message);
-		} catch (InterruptedException | ExecutionException e) {
-			e.printStackTrace();
-			Thread.currentThread().interrupt();
-		}
+			adminID.forEach(a->{
+				try {
+					helper.getApi().getUserById(a).get().openPrivateChannel().get().sendMessage(message+" "+wishlist);
+				} catch (InterruptedException | ExecutionException e) {
+					e.printStackTrace();
+					Thread.currentThread().interrupt();
+				}
+			});
+
 		helper.getApi().getTextChannelById(defaultChannelID).ifPresent(th -> th.sendMessage(message));
 	}
 }
