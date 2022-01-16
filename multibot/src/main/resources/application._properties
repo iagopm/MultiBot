@@ -1,42 +1,47 @@
-#Vandal
-#minutes
+# Vandal
+# Delay minutes to check
 vandalDelay=5
-#hour to check vandal 24 hour format
+# Hour to check vandal 24 hour format
 vandalHour=10
-#rss url
+# Rss url
 vandalURL=https://...
 
-#General bot settings
-#discord bot token
+# General bot settings
+# discord bot token
 token=
+# General text channel ID
 defaultChannelID=
+# Admin id for shutdown command usage
 adminID=
-#minutes
+# This resets flags of daily checks minutes
 resetDelay=1
 
-#Commands
+# Commands
 prefix=!
+# Command that displays commands available for usage
 helpCommand=help
+# Detects text of and image using it's URL
 ocrCommand=ocr
+# Shutdown command
 shutDownCommand=exit
 
-#Countdown
-#minutes
+# Countdown
+# minutes
 countDownRotate=1200
-#java default java.util.Date class format
+# java default java.util.Date class format
 date=
 
-#Help command
+# Help command
 helpText=
 
-#Ocr command tesseract lib route and so
+# Ocr command tesseract lib route and so
 dataPathTess=
 tessLang=
 
-#Amazon Bot
-#wishlist url must be public
+# Amazon Bot
+# wishlist url must be public
 wishlist=
-#minutes 5-15 min so bot doesn't get detected
+# minutes 5-15 min so bot doesn't get detected
 wishlistDelay=15
 priceChangedMessage=
 listChangedMessage=
