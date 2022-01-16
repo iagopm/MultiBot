@@ -27,25 +27,28 @@ Maven building the project
 
 How to install:
 
-1.- Import project into your favourite IDE
+        1.- Import project into your favourite IDE
 
-2.- Create your own application.properties using the sample file provided in src/main/resources.
+        2.- Create your own application.properties using the sample file provided in src/main/resources.
 
-3.- Install tesseract see: 
-https://www.baeldung.com/java-ocr-tesseract 
-https://digi.bib.uni-mannheim.de/tesseract/
-or this particular version for windows https://digi.bib.uni-mannheim.de/tesseract/tesseract-ocr-w64-setup-v5.0.0-rc1.20211030.exe
+        3.- Install tesseract see: 
+        https://www.baeldung.com/java-ocr-tesseract 
+        https://digi.bib.uni-mannheim.de/tesseract/
+        or this particular version for windows https://digi.bib.uni-mannheim.de/tesseract/tesseract-ocr-w64-setup-v5.0.0-rc1.20211030.exe
 
-4.- Put tessdata folder of tesseract into src/main/resources project folder
+        4.- Put tessdata folder of tesseract into src/main/resources project folder
 
-5.- Run maven goal "clean package"
+        5.- Run maven goal "clean package"
 
-6.- Run java project from target folder.
+        6.- Run java project from target folder.
 
 Technologies Used ->
 
 SpringBoot
+
 Tesseract4j
+
 JavaCord
+
 jsoup
 
