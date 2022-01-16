@@ -36,6 +36,7 @@ helpText=
 
 # Ocr command tesseract lib route and so
 dataPathTess=
+# spa for spanish eng for english see more on tesseract doc
 tessLang=
 
 # Amazon Bot
