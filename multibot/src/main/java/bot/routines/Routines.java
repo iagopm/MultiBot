@@ -17,6 +17,9 @@ public class Routines {
 	@Value("${vandalHour}")
 	private Integer vandalHour;
 
+	@Value("${isWishlistEnabled}")
+	private Boolean isWishlistEnabled;
+
 	@Autowired
 	private VandalTask vandalTask;
 
@@ -55,7 +58,9 @@ public class Routines {
 	 */
 	@Scheduled(fixedRateString = "${wishlistDelay}", timeUnit = TimeUnit.MINUTES)
 	public void wishListTask() {
-		wishListTask.perform();
+		if (isWishlistEnabled) {
+			wishListTask.perform();
+		}
 	}
 
 	/**

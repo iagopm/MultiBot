@@ -46,6 +46,8 @@ tessLang=
 wishlist=
 # minutes 5-15 min so bot doesn't get detected
 wishlistDelay=15
+#boolean true|false
+isWishlistEnabled=
 priceChangedMessage=
 listChangedMessage=
 botDetectedMessage=
